@@ -34,7 +34,7 @@ alias chrome_dev='chromium --user-data-dir="/home/kfl62/.config/chromium_dev" &'
 alias monica='/home/kfl62/.monicarc && xset -dpms s off s noblank s noexpose'
 
 #mongodb
-alias mongodb='/home/kfl62/bin/mongodb/bin/mongod --dbpath=/home/kfl62/.data/db --master'
+alias mongodb='/home/kfl62/bin/mongodb/bin/mongod --dbpath=/home/kfl62/.data/db --directoryperdb'
 alias mongojs='/home/kfl62/bin/mongodb/bin/mongo'
 
 #rvm
@@ -57,4 +57,10 @@ alias zdp='sudo zypper dup'
 
 #vim plugins
 alias pathogen='cd ~/.config/dotfiles && git submodule update && cd'
+
+#ibutton
+alias sqreinit='.bundle/bin/sequel -m ./db/migrations -M 0 sqlite://db/ibutton.sqlite3 && .bundle/bin/sequel -m ./db/migrations -M 14 sqlite://db/ibutton.sqlite3'
+
+#Sublime Text2
+alias st2='~/bin/SublimeText2/sublime_text &'
 
