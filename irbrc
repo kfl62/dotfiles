@@ -13,7 +13,7 @@ Wirble.colorize
 alias q exit
 
 IRB.conf[:SAVE_HISTORY] = 1000
-IRB.conf[:HISTORY_FILE] = "#{ENV['HOME']}/.irb_history"
+IRB.conf[:HISTORY_FILE] = "#{ENV['HOME']}/.irb_save_history"
 rvm_ruby_string = ENV["rvm_ruby_string"] || `rvm tools identifier`.strip.split("@", 2)[0]
 @prompt = {
   :PROMPT_I => "#{rvm_ruby_string} > ",  # default prompt
