@@ -10,3 +10,6 @@
   imap <C-left> <Space>=><Space>"
 " C-s save
   inoremap <C-s> <Esc>:w<CR>a
+" Run ruby file
+  nnoremap <silent> <F11> :w<CR>:!ruby %<CR>
+  inoremap <silent> <F11> <Esc>:w<CR>:!ruby %<CR>
