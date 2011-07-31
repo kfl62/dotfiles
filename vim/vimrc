@@ -24,6 +24,7 @@
   if has('autocmd')
     autocmd GUIEnter * set vb t_vb=
   endif
+  set lazyredraw
   
   set mouse=a
   set t_Co=256
