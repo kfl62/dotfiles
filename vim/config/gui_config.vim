@@ -7,7 +7,7 @@
     "set guioptions-=T
     colorscheme vividchalk
     set lines=60
-    set columns=120
+    set columns=140
     function! GuiTabLabel()
 	" add the tab number
 	let label = '['.tabpagenr()
