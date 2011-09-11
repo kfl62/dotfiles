@@ -10,7 +10,7 @@ fi
 
 export EDITOR='/usr/bin/vim'
 export PATH="/usr/sbin:/sbin:/usr/local/bin:/usr/local/sbin:/usr/local/lib:$PATH"
-
+cdpath=( /usr ~ ~/work )
 # rip related settings
 #export RUBYLIB="$RUBYLIB:$HOME/bin/rip/lib"
 #export PATH="$PATH:$HOME/bin/rip/bin"
