@@ -15,6 +15,12 @@ alias mydns='sh ~/bin/dyndns.sh'
 alias mousenav='sudo lomoco -8 --sms'
 alias mousedes='sudo lomoco -4 --sms'
 
+#tail
+alias rtail='Terminal --geometry=185x90+0+0 --hide-borders --hide-menubar --hide-toolbars --command="tail -f /var/log/messages" &'
+
+#exit usefull when using yakuake :)
+alias q='exit'
+
 #mpd
 alias mpd='sudo rcmpd start'
 alias mpds='sudo rcmpd stop'
