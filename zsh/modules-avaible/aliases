@@ -1,4 +1,5 @@
 # other
+alias -g G='| grep'
 
 # cd
 alias ..='cd ..'
@@ -16,7 +17,8 @@ alias mousenav='sudo lomoco -8 --sms'
 alias mousedes='sudo lomoco -4 --sms'
 
 #tail
-alias rtail='Terminal --geometry=185x90+0+0 --hide-borders --hide-menubar --hide-toolbars --command="tail -f /var/log/messages" &'
+alias rtailx='Terminal --geometry=185x90+0+0 --hide-borders --hide-menubar --hide-toolbars --command="tail -f /var/log/messages" &'
+alias rtail='sudo tail -n150 -f /var/log/messages.log'
 
 #exit usefull when using yakuake :)
 alias q='exit'
@@ -57,9 +59,20 @@ alias rvmu='rvm get head'
 alias rvmrc='rvm --create --rvmrc use '
 
 #zypper
-alias zru='sudo zypper refresh && sudo zypper update'
-alias zps='sudo zypper ps'
-alias zdp='sudo zypper dup'
+#alias zru='sudo zypper refresh && sudo zypper update'
+#alias zps='sudo zypper ps'
+#alias zdp='sudo zypper dup'
+
+#pacman
+alias yau='yaourt -Syua'
+alias yaS='yaourt -S'
+alias yaU='yaourt -U'
+alias yas='yaourt -Ss'
+alias yaR='yaourt -R'
+alias yaQl='yaourt -Ql'
+alias yaQo='yaourt -Qo'
+alias yast='yaourt --stats'
+alias yacl='yaourt -Sc'
 
 #vim plugins
 alias pathogen='cd ~/.config/dotfiles && git submodule update && cd'
@@ -70,3 +83,5 @@ alias sqreinit='.bundle/bin/sequel -m ./db/migrations -M 0 sqlite://db/ibutton.s
 #Sublime Text2
 alias st2='~/bin/SublimeText2/sublime_text &'
 
+#Skype
+alias skype='LD_PRELOAD=/usr/lib/libv4l/v4l1compat.so skype'
