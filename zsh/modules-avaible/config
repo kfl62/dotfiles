@@ -9,12 +9,8 @@ else
 fi
 
 export EDITOR='/usr/bin/vim'
-export PATH="/usr/sbin:/sbin:/usr/local/bin:/usr/local/sbin:/usr/local/lib:$PATH"
+export PATH="$PATH:$HOME/bin:/usr/local/lib"
 cdpath=( /usr ~ ~/work )
-# rip related settings
-#export RUBYLIB="$RUBYLIB:$HOME/bin/rip/lib"
-#export PATH="$PATH:$HOME/bin/rip/bin"
-#eval `rip-config`
 
 fpath=(~/.zsh/functions $fpath)
 
@@ -42,13 +38,37 @@ setopt INC_APPEND_HISTORY SHARE_HISTORY  # adds history incrementally and share 
 setopt HIST_IGNORE_ALL_DUPS  # don't record dupes in history
 setopt HIST_REDUCE_BLANKS
 
-zle -N newtab
+autoload zkbd
+function zkbd_file() {
+    [[ -f ~/.zkbd/${TERM}-${VENDOR}-${OSTYPE} ]] && printf '%s' ~/".zkbd/${TERM}-${VENDOR}-${OSTYPE}" && return 0
+    [[ -f ~/.zkbd/${TERM}-${DISPLAY}          ]] && printf '%s' ~/".zkbd/${TERM}-${DISPLAY}"          && return 0
+    return 1
+}
 
-bindkey '^[^[[D' backward-word
-bindkey '^[^[[C' forward-word
-bindkey '^[[5D' beginning-of-line
-bindkey '^[[5C' end-of-line
-bindkey '^[[3~' delete-char
-bindkey '^[^N' newtab
-bindkey '^?' backward-delete-char 
+[[ ! -d ~/.zkbd ]] && mkdir ~/.zkbd
+keyfile=$(zkbd_file)
+ret=$?
+if [[ ${ret} -ne 0 ]]; then
+    zkbd
+    keyfile=$(zkbd_file)
+    ret=$?
+fi
+if [[ ${ret} -eq 0 ]] ; then
+    source "${keyfile}"
+else
+    printf 'Failed to setup keys using zkbd.\n'
+fi
+unfunction zkbd_file; unset keyfile ret
 
+# setup key accordingly
+[[ -n "${key[Home]}"    ]]  && bindkey  "${key[Home]}"    beginning-of-line
+[[ -n "${key[End]}"     ]]  && bindkey  "${key[End]}"     end-of-line
+[[ -n "${key[Insert]}"  ]]  && bindkey  "${key[Insert]}"  overwrite-mode
+[[ -n "${key[Delete]}"  ]]  && bindkey  "${key[Delete]}"  delete-char
+[[ -n "${key[Up]}"      ]]  && bindkey  "${key[Up]}"      up-line-or-history
+[[ -n "${key[Down]}"    ]]  && bindkey  "${key[Down]}"    down-line-or-history
+[[ -n "${key[Left]}"    ]]  && bindkey  "${key[Left]}"    backward-char
+[[ -n "${key[Right]}"   ]]  && bindkey  "${key[Right]}"   forward-char
+
+bindkey "^[[A" history-search-backward
+bindkey "^[[B" history-search-forward

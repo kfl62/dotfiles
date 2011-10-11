@@ -1,11 +1,6 @@
 for file in ~/.zsh/modules-enabled/*; do
-source $file
+  source $file
 done
-
-bindkey "^[[A" history-search-backward
-bindkey "^[[B" history-search-forward
-
-export MPD_HOST=127.0.0.1
 
 # use .localrc for settings specific to one system
 [[ -f ~/.localrc ]] && .  ~/.localrc

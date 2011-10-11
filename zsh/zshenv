@@ -3,5 +3,7 @@
 
 setopt nullglob
 
+source /etc/profile.d/cnf.sh
+
 [[ -s $HOME/.rvm/scripts/rvm ]] && source $HOME/.rvm/scripts/rvm
 
