@@ -1,5 +1,6 @@
 # other
 alias -g G='| grep'
+alias setclock='sudo ntpd -q && sudo hwclock -w'
 
 # cd
 alias ..='cd ..'
@@ -17,8 +18,8 @@ alias mousenav='sudo lomoco -8 --sms'
 alias mousedes='sudo lomoco -4 --sms'
 
 #tail
-alias rtailx='Terminal --geometry=185x90+0+0 --hide-borders --hide-menubar --hide-toolbars --command="tail -f /var/log/messages" &'
-alias rtail='sudo tail -n150 -f /var/log/messages.log'
+alias tail-log-x='Terminal --geometry=185x90+0+0 --hide-borders --hide-menubar --hide-toolbars --command="journalctl -f" &'
+alias tail-log='journalctl -f -n150'
 
 #exit usefull when using yakuake :)
 alias q='exit'
@@ -42,8 +43,8 @@ alias chrome_dev='chromium --user-data-dir="/home/kfl62/.config/chromium_dev" &'
 alias monica='/home/kfl62/.monicarc && xset -dpms s off s noblank s noexpose'
 
 #mongodb
-alias mongodb='/home/kfl62/bin/mongodb/bin/mongod --dbpath=/home/kfl62/.data/db --directoryperdb'
-alias mongojs='/home/kfl62/bin/mongodb/bin/mongo'
+alias mongodb='/usr/bin/mongod --dbpath=/home/kfl62/.data/db --directoryperdb --nohttpinterface --noauth --smallfiles'
+alias mongojs='/usr/bin/mongo'
 
 #rvm
 alias rvmd='rvm use 1.9.3'
@@ -62,12 +63,12 @@ alias yau='yaourt -Syua'
 alias yaS='yaourt -S'
 alias yaU='yaourt -U'
 alias yas='yaourt -Ss'
-alias yaR='yaourt -R'
+alias yaR='yaourt -Rns'
 alias yaQs='yaourt -Qs'
 alias yaQl='yaourt -Ql'
 alias yaQo='yaourt -Qo'
 alias yast='yaourt --stats'
-alias yacl='yaourt -Sc'
+alias yacl='yaourt -Scc && sudo pacman-optimize'
 
 #vim plugins
 alias pathogen='cd ~/.config/dotfiles && git submodule update && cd'
@@ -80,3 +81,19 @@ alias st2='~/bin/SublimeText2/sublime_text &'
 
 #Skype
 alias skype='LD_PRELOAD=/usr/lib/libv4l/v4l1compat.so skype'
+
+#bundler
+alias buex='bundle exec'
+alias burc='bundle exec rake console'
+alias buup='bundle update'
+alias bucl='bundle clean'
+alias bugu='bundle exec guard'
+alias buss='bundle exec rackup -p3000'
+
+#sshfs
+alias sshfs_diren='sshfs kfl62@md-colectare.ro:/srv/smb/work /home/kfl62/sshfs/diren_work -p22222'
+alias sshfs_diren_u='fusermount -u ~/sshfs/diren_work'
+
+# netctl
+
+alias lan='sudo netctl'
