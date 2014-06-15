@@ -84,11 +84,13 @@ alias skype='LD_PRELOAD=/usr/lib/libv4l/v4l1compat.so skype'
 
 #bundler
 alias buex='bundle exec'
-alias burc='bundle exec rake console'
 alias buup='bundle update'
 alias bucl='bundle clean'
 alias bugu='bundle exec guard'
 alias buss='bundle exec rackup -p3000'
+alias burc='bundle exec rake console'
+alias buss_trst='cd ~/work/trst_sys_sinatra && bundle exec rackup -p3000'
+alias burc_trst='cd ~/work/trst_sys_sinatra && bundle exec rake console'
 
 #sshfs
 alias sshfs_diren='sshfs kfl62@md-colectare.ro:/srv/smb/work /home/kfl62/sshfs/diren_work -p22222'
