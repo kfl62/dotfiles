@@ -46,20 +46,8 @@ alias monica='/home/kfl62/.monicarc && xset -dpms s off s noblank s noexpose'
 alias mongodb='/usr/bin/mongod --dbpath=/home/kfl62/.data/db --directoryperdb --nohttpinterface --noauth --smallfiles'
 alias mongojs='/usr/bin/mongo'
 
-#rvm
-alias rvmd='rvm use 1.9.3'
-alias rvms='rvm system'
-alias rvmv='rvm -v | tr -s "\n" && ruby -v && echo'
-alias rvmu='rvm get head'
-alias rvmrc='rvm --create --rvmrc use '
-
-#zypper
-#alias zru='sudo zypper refresh && sudo zypper update'
-#alias zps='sudo zypper ps'
-#alias zdp='sudo zypper dup'
-
 #pacman
-alias yau='yaourt -Syua'
+alias yau='yaourt -Syyuuaa'
 alias yaS='yaourt -S'
 alias yaU='yaourt -U'
 alias yas='yaourt -Ss'
@@ -93,9 +81,18 @@ alias buss_trst='cd ~/work/trst_sys_sinatra && bundle exec rackup -p3000'
 alias burc_trst='cd ~/work/trst_sys_sinatra && bundle exec rake console'
 
 #sshfs
-alias sshfs_diren='sshfs kfl62@md-colectare.ro:/srv/smb/work /home/kfl62/sshfs/diren_work -p22222'
+alias sshfs_diren='sshfs kfl62@trst.ro:/srv/smb/work /home/kfl62/sshfs/diren_work -p22222'
 alias sshfs_diren_u='fusermount -u ~/sshfs/diren_work'
 
-# netctl
+#nfsd
+alias nfsm-lacie='sudo sh -c "mkdir -p /run/media/kfl62/lacie; mount kfl62-hp-00:/mnt/lacie /run/media/kfl62/lacie"'
+alias nfsu-lacie='sudo umount /run/media/kfl62/lacie'
 
+# netctl
 alias lan='sudo netctl'
+
+# VirtualBox
+alias win10='sudo modprobe vboxdrv && VBoxManage startvm Windows_10_x64'
+
+# DUKIntegrator
+alias d206='java -jar /home/kfl62/bin/DUKIntegrator/DUKIntegrator.jar'

@@ -1,11 +1,9 @@
 # set global options for all zsh shells here
 #
 
+export MPD_HOST=10.10.10.2
+
 setopt nullglob
 
 source /etc/profile.d/cnf.sh
 
-[[ -s $HOME/.rvm/scripts/rvm ]] && source $HOME/.rvm/scripts/rvm
-
-
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting

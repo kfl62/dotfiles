@@ -12,19 +12,14 @@ Wirble.colorize
 
 alias q exit
 
+IRB.conf[:PROMPT][:MY_PROMPT] = IRB.conf[:PROMPT][:SIMPLE].merge(
+  :PROMPT_S=>"%l>> ",
+  :PROMPT_C=>"*>> ",
+)
+IRB.conf[:PROMPT_MODE] = :MY_PROMPT
+IRB.conf[:AUTO_INDENT] = true
 IRB.conf[:SAVE_HISTORY] = 1000
 IRB.conf[:HISTORY_FILE] = "#{ENV['HOME']}/.irb_save_history"
-rvm_ruby_string = ENV["rvm_ruby_string"] || `rvm tools identifier`.strip.split("@", 2)[0]
-@prompt = {
-  :PROMPT_I => "#{rvm_ruby_string} > ",  # default prompt
-  :PROMPT_S => "#{rvm_ruby_string} %l> ", # known continuation
-  :PROMPT_C => "#{rvm_ruby_string} > ",
-  :PROMPT_N => "#{rvm_ruby_string} ?> ", # unknown continuation
-  :RETURN => " => %s \n",
-  :AUTO_INDENT => true
-}
-IRB.conf[:PROMPT][:KFL62] = @prompt
-IRB.conf[:PROMPT_MODE] = :KFL62
 
 class Object
   # list methods which aren't in superclass
