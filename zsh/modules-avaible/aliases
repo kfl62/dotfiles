@@ -2,9 +2,9 @@
 alias -g G='| grep'
 alias setclock='sudo ntpd -q && sudo hwclock -w'
 
-# cd
+# cd, ps ...
 alias ..='cd ..'
-alias w='cd'
+alias ps='ps auxf'
 
 # commands starting with % for pasting from web
 alias %=' '
