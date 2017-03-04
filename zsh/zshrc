@@ -1,6 +1,106 @@
-for file in ~/.zsh/modules-enabled/*; do
+for file in ~/.config/dotfiles/zsh/modules-enabled/*; do
   source $file
 done
 
-# use .localrc for settings specific to one system
-[[ -f ~/.localrc ]] && .  ~/.localrc
+# rbenv, for testing
+eval "$(rbenv init -)"
+
+#-------------------------------
+# Plugins
+#-------------------------------
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /etc/profile.d/cnf.sh
+
+export EDITOR='/usr/bin/geany'
+export VISUAL='/usr/bin/geany'
+export PATH="$PATH:$HOME/bin"
+
+cdpath=( /usr ~ ~/work )
+fpath=(~/.config/dotfiles/zsh/functions $fpath)
+autoload -U ~/.config/dotfiles/zsh/functions/*(:t)
+
+#----------------------------
+# History
+#----------------------------
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+
+#-----------------------------
+# Legacy
+#-----------------------------
+setopt nullglob
+setopt NO_BG_NICE						# don't nice background tasks
+setopt NO_HUP
+setopt NO_LIST_BEEP
+setopt LOCAL_OPTIONS					# allow functions to have local options
+setopt LOCAL_TRAPS						# allow functions to have local traps
+setopt PROMPTSUBST
+setopt CORRECT
+setopt COMPLETE_IN_WORD
+setopt IGNORE_EOF
+# History
+setopt APPEND_HISTORY					# adds history
+setopt INC_APPEND_HISTORY SHARE_HISTORY # adds history incrementally and share it across sessions
+setopt HIST_VERIFY
+setopt HIST_IGNORE_ALL_DUPS				# don't record dupes in history
+setopt HIST_REDUCE_BLANKS
+setopt SHARE_HISTORY					# share history between sessions ???
+setopt EXTENDED_HISTORY					# add timestamps to history
+
+
+#-----------------------------
+# Dircolors
+#-----------------------------
+LS_COLORS='rs=0:di=01;34:ln=01;36:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:su=37;41:sg=30;43:tw=30;42:ow=34;42:st=37;44:ex=01;32:';
+export LS_COLORS
+
+#------------------------------
+# Keybindings
+#------------------------------
+bindkey -v
+typeset -g -A key
+bindkey '\e[3~' delete-char
+bindkey '\e[1~' beginning-of-line
+bindkey '\e[4~' end-of-line
+bindkey '\e[2~' overwrite-mode
+bindkey '^?' backward-delete-char
+bindkey '^[[1~' beginning-of-line
+bindkey '^[[5~' up-line-or-history
+bindkey '^[[3~' delete-char
+bindkey '^[[4~' end-of-line
+bindkey '^[[6~' down-line-or-history
+bindkey '^[[A' up-line-or-search
+bindkey '^[[D' backward-char
+bindkey '^[[B' down-line-or-search
+bindkey '^[[C' forward-char
+
+#------------------------------
+# Comp stuff
+#------------------------------
+zmodload zsh/complist
+autoload -Uz compinit
+compinit
+zstyle :compinstall filename '${HOME}/.zshrc'
+
+#- buggy
+zstyle ':completion:*:descriptions' format '%U%B%d%b%u'
+zstyle ':completion:*:warnings' format '%BSorry, no matches for: %d%b'
+#-/buggy
+
+zstyle ':completion:*:pacman:*' force-list always
+zstyle ':completion:*:*:pacman:*' menu yes select
+
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+
+zstyle ':completion:*:*:kill:*' menu yes select
+zstyle ':completion:*:kill:*'   force-list always
+
+zstyle ':completion:*:*:killall:*' menu yes select
+zstyle ':completion:*:killall:*'   force-list always
+
+#- complete pacman-color the same as pacman
+compdef _pacman pacman-color=pacman
+
+#- prompt
+PROMPT='%B%F{cyan}%m%f %3~%b$(git_info_for_prompt) > '
