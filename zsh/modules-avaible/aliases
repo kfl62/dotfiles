@@ -1,9 +1,11 @@
 # other
 alias -g G='| grep'
 alias setclock='sudo ntpd -q && sudo hwclock -w'
+alias pacman="pacman --color auto"
 
 # cd, ps ...
 alias ..='cd ..'
+alias w='cd'
 alias ps='ps auxf'
 
 # commands starting with % for pasting from web
@@ -15,7 +17,7 @@ alias mydns='sh ~/bin/dyndns.sh'
 
 #mouse
 alias mousenav='sudo lomoco -8 --sms'
-alias mousedes='sudo lomoco -4 --sms'
+alias mousedev='sudo lomoco -4 --sms'
 
 #tail
 alias tail-log-x='Terminal --geometry=185x90+0+0 --hide-borders --hide-menubar --hide-toolbars --command="journalctl -f" &'
@@ -47,16 +49,16 @@ alias mongodb='/usr/bin/mongod --dbpath=/home/kfl62/.data/db --directoryperdb --
 alias mongojs='/usr/bin/mongo'
 
 #pacman
-alias yau='yaourt -Syyuuaa'
-alias yaS='yaourt -S'
-alias yaU='yaourt -U'
-alias yas='yaourt -Ss'
-alias yaR='yaourt -Rns'
-alias yaQs='yaourt -Qs'
-alias yaQl='yaourt -Ql'
-alias yaQo='yaourt -Qo'
-alias yast='yaourt --stats'
-alias yacl='yaourt -Scc && sudo pacman-optimize'
+alias pau='pacaur -Syyu'
+alias paS='pacaur -S'
+alias paU='pacaur -U'
+alias pas='pacaur -Ss'
+alias paR='pacaur -Rns'
+alias paI='pacaur -Sii'
+alias paQs='pacaur -Qs'
+alias paQl='pacaur -Ql'
+alias paQo='pacaur -Qo'
+alias pacl='pacaur -Scc && sudo pacman-optimize && sync'
 
 #vim plugins
 alias pathogen='cd ~/.config/dotfiles && git submodule update && cd'
@@ -92,7 +94,8 @@ alias nfsu-lacie='sudo umount /run/media/kfl62/lacie'
 alias lan='sudo netctl'
 
 # VirtualBox
-alias win10='sudo modprobe vboxdrv && VBoxManage startvm Windows_10_x64'
+alias win7='sudo modprobe vboxdrv && VBoxManage startvm "Windows 7 (64-bit)"'
+alias win10='sudo modprobe vboxdrv && VBoxManage startvm "Windows 10 (64-bit)"'
 
 # DUKIntegrator
 alias d206='java -jar /home/kfl62/bin/DUKIntegrator/DUKIntegrator.jar'
