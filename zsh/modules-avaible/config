@@ -6,11 +6,10 @@ fi
 
 export EDITOR='/usr/bin/geany'
 export VISUAL='/usr/bin/geany'
-export PATH="$PATH:$HOME/bin:/usr/local/lib"
+export PATH="$PATH:$HOME/bin"
 cdpath=( /usr ~ ~/work )
 
 fpath=(~/.zsh/functions $fpath)
-
 autoload -U ~/.zsh/functions/*(:t)
 
 HISTFILE=~/.zsh_history
@@ -31,8 +30,8 @@ setopt COMPLETE_IN_WORD
 setopt IGNORE_EOF
 
 setopt APPEND_HISTORY # adds history
-setopt INC_APPEND_HISTORY SHARE_HISTORY  # adds history incrementally and share it across sessions
-setopt HIST_IGNORE_ALL_DUPS  # don't record dupes in history
+setopt INC_APPEND_HISTORY SHARE_HISTORY # adds history incrementally and share it across sessions
+setopt HIST_IGNORE_ALL_DUPS # don't record dupes in history
 setopt HIST_REDUCE_BLANKS
 
 autoload zkbd
