@@ -19,7 +19,7 @@ IRB.conf[:PROMPT][:MY_PROMPT] = IRB.conf[:PROMPT][:SIMPLE].merge(
 IRB.conf[:PROMPT_MODE] = :MY_PROMPT
 IRB.conf[:AUTO_INDENT] = true
 IRB.conf[:SAVE_HISTORY] = 1000
-IRB.conf[:HISTORY_FILE] = "#{ENV['HOME']}/.irb_save_history"
+IRB.conf[:HISTORY_FILE] = "#{ENV['HOME']}/.irb_history"
 
 class Object
   # list methods which aren't in superclass
