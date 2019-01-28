@@ -1,5 +1,5 @@
 conky.config = {
-  background = true,
+  -- background = false,
   double_buffer = true,
   cpu_avg_samples = 2,
   net_avg_samples = 2,
@@ -8,7 +8,7 @@ conky.config = {
   alignment = 'top_right',
   gap_x = 5,
   gap_y = 5,
-  
+
   own_window = true,
   own_window_class = 'Conky',
   own_window_type = 'normal',
@@ -16,55 +16,60 @@ conky.config = {
   own_window_hints = 'undecorated,below,sticky,skip_taskbar,skip_pager',
   -- own_window_argb_visual = true,
   -- own_window_argb_value = 0,
-  
+
   use_xft = true,
   xftalpha = 0.5,
   color0 = 'E4E4E4',
   color1 = '888888',
+  color2 = 'B82424',
+  color3 = '88ffff',
   draw_borders = false,
   draw_graph_borders = false,
   draw_outline = false,
   draw_shades = false
-
+  -- ${alignr 10}${execi 60 curl -s 10.10.10.1/ip_status.html | sed -n '/\<I\>/{!b;n;p}' | awk '{print $3}'}${color1}
+  -- ${alignr 10}${execi 300 curl -s -m10 ipinfo.io/ip}
 }
 conky.text = [[
-${font Neuropol:size=10}$color1${alignc}System Info${font}$color0
-${offset 50}${font Tahoma:size=8}${execi 60 whoami} on $nodename
-${offset 50}$sysname $kernel on $machine
+${alignc}${font Neuropol:size=10}${color1}System Info${font Tahoma:size=8}${color0}${voffset 5}
+${offset 50}${execi 60 whoami} on ${nodename}
+${offset 50}${sysname} ${kernel} on ${machine}
 ${offset 50}xfce4  ${execi 60 xfce4-about -V | head -n1 | awk '{print $2}'}
-
-
-${offset 10}${font Neuropol:size=10}$color1 CPU Load${font}
-${voffset -5}${font Tahoma:size=8}${color0}${execi 60 cat /proc/cpuinfo | grep 'model name' | cut -c 18-70|uniq}${color1}
-${cpugraph cpu0 24,140 888888 E4E4E4 s -t}
-${font Tahoma:size=8}${offset 5}CPU_1 $color0${cpu cpu1}%$tab$tab$color1 CPU_2 $color0${cpu cpu2}%${alignr 15}$color1 CPU
+${color2}${hr}${color1}${voffset 5}
+${alignc}${font Neuropol:size=10}CPU Load${font Tahoma:size=8}${color0}${voffset 5}
+${execi 60 cat /proc/cpuinfo | grep 'model name' | cut -c 18-70|uniq}${color1}
+${cpugraph cpu0 24,140 888888 E4E4E4 -t}
+${offset 5}CPU_1 $color0${cpu cpu1}%$tab$tab$color1 CPU_2 $color0${cpu cpu2}%${alignr 15}$color1 CPU
 ${offset 5}${color1}CPU_3 $color0${cpu cpu3}%$tab$tab$color1 CPU_4 $color0${cpu cpu4}%${alignr 15}${cpu cpu0}%
-
-${alignr 10}${voffset 8}${font Neuropol:size=10}$color1 Memory Load${font}${font Tahoma:size=8}
-${alignr}${color0}$mem${color1} of ${color0}$memmax${color1}  (RAM)
-${alignr}${color0}$swap${color1} of ${color0}$swapmax${color1} (Swap)
-
-
+${color2}${hr}${color1}${voffset 5}
+${alignr}${font Neuropol:size=10}${color1}Memory Load${font Tahoma:size=8}${color0}${voffset 5}
+${alignr}${color0}${mem}${color1} of ${color0}$memmax${color1}  (RAM)
+${alignr}${color0}${swap}${color1} of ${color0}$swapmax${color1} (Swap)
+${color2}${hr}${color1}${voffset 5}
+${alignc}${font Neuropol:size=10}${color1}Netwok Load${font Tahoma:size=8}${color0}${voffset 5}
 ${offset 10}IP ${color0}${addr lan0} ${alignr 10}${execi 60 curl -s 10.10.10.1/ip_status.html | sed -n '/\<I\>/{!b;n;p}' | awk '{print $3}'}${color1}
-${color0}${alignr 10}${execi 60 curl -s 10.10.10.1/ip_status.html | sed -n '/\<I\>/{!b;n;n;p}' | awk '{print $3}'}${color1}
-${downspeedgraph lan0 24,200 888888 E4E4E4 2441KiB -l -t}
+${downspeedgraph lan0 24,200 888888 E4E4E4 10240KiB -t -l}
 ${offset 5}(incoming) ${color0}${downspeed lan0}${alignr 5}${color1}Total ${color0}${totaldown lan0}${color1}
-${upspeedgraph lan0 24,200 888888 E4E4E4 2441KiB -l -t}
+${upspeedgraph lan0 24,200 888888 E4E4E4 10240KiB -t -l}
 ${offset 5}(outgoing) ${color0}${upspeed lan0}${alignr 5}${color1}Total ${color0}${totalup lan0}${color1}
-${offset 10}${voffset 15}${font Neuropol:size=10}$color1 Netwok Load${font}
-
-${alignr 10}${voffset -5}${font Neuropol:size=10}$color1 Disk Usage${font}${font Tahoma:size=8}
+${color2}${hr}${color1}${voffset 5}
+${alignr}${font Neuropol:size=10}${color1}Disk Usage${font Tahoma:size=8}${color0}${voffset 5}
 ${offset 60}${color0}${fs_used /}${color1} of ${color0}${fs_size /}${color1} (/)
 ${offset 60}${color0}${fs_used /home}${color1} of ${color0}${fs_size /home}${color1} (/home)
+${color2}${hr}${color1}${voffset 5}
+${alignc}${font Neuropol:size=10}${color1}Fans/Temp${font Tahoma:size=8}${voffset 5}
+${offset 15}Chass${offset 13}${color0}${execi 10 sensors | grep fan3 | cut -c13-23}${color1}
+${offset 15}CPU${offset 25}${color0}${execi 10 sensors | grep fan1 | cut -c14-23}${color1}
+${offset 15}CPU${offset 25}${color0}${execi 10 sensors | grep -a temp2 | cut -c16-23 | tail -1}${color1}
+${offset 15}GPU${offset 24}${color0}${execi 10 nvidia-smi -q -d temperature | grep 'GPU Current' | cut -c39-40}.0°C${color1}
+${color2}${hr}${color1}${voffset 5}
+${alignc}${font Neuropol:size=10}${color1}Today${font Tahoma:size=8}${color3}${voffset 5}
+${offset 55}${time %H:%M:%S}${offset 20}${time %a, %d %b. %Y}${voffset 5}
+${image ~/.conky/weather.png -p 20,615 -s 24x24 -n}${offset 55}\
+${color0}${execi 10 /home/kfl62/.conky/weather.sh data}
+${color2}${hr}${color1}${voffset 5}
+${alignc}ă î   ș ț â  ${color0}…${color1}  í   ö ü ó   ő ú   é á ű
 
-
-${alignc}${font Neuropol:size=10}$color1 Fans/Temp${font}${font Tahoma:size=8}
-${offset 15}Chass    ${color0}${execi 10 sensors | grep fan3 | cut -c13-23}${color1}
-${offset 15}CPU$tab$tab$tab${color0}${execi 10 sensors | grep fan1 | cut -c14-23}${color1}
-${offset 15}CPU$tab$tab$tab${color0}${execi 10 sensors | grep -a temp2 | cut -c16-23 | tail -1}${color1}
-${offset 15}GPU $tab$tab$tab${color0}${execi 10 nvidia-settings -q gpucoretemp | grep kfl62:0.0 | cut -c40-42}0°C${color1}
-
-${alignc}${image ~/.conky/cynapses/line.png -p 0,75}${image ~/.conky/cynapses/line.png -p 0,195}${image ~/.conky/cynapses/line.png -p 0,260}${image ~/.conky/cynapses/line.png -p 0,435}${image ~/.conky/cynapses/line.png -p 0,510}${image ~/.conky/cynapses/line.png -p 0,605}
-${image ~/.conky/cynapses/icons/sysinfo.png -p 5,20}${image ~/.conky/cynapses/icons/cpu.png -p 145,105}${image ~/.conky/cynapses/icons/memory.png -p 5,195}${image ~/.conky/cynapses/icons/network.png -p 150,390}${image ~/.conky/cynapses/icons/disks.png -p 0,450}${image ~/.conky/cynapses/icons/fans_temps.png -p 140,545}
-${image ~/.conky/cynapses/cpugrid.png -p 0,130}${image ~/.conky/cynapses/netgrid-down.png -p 0,307}${image ~/.conky/cynapses/netgrid-up.png -p 0,357}
+${image ~/.conky/cynapses/icons/sysinfo.png -p 5,15}${image ~/.conky/cynapses/icons/cpu.png -p 150,95}${image ~/.conky/cynapses/icons/memory.png -p 5,200}${image ~/.conky/cynapses/icons/disks.png -p 0,425}${image ~/.conky/cynapses/icons/fans_temps.png -p 135,515}
+${image ~/.conky/cynapses/cpugrid.png -p 0,125}${image ~/.conky/cynapses/netgrid-down.png -p 0,307}${image ~/.conky/cynapses/netgrid-up.png -p 0,359}
 ]]
