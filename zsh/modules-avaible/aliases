@@ -1,18 +1,19 @@
 # other
 alias -g G='| grep'
 alias setclock='sudo ntpd -q && sudo hwclock -w'
-alias pacman="pacman --color auto"
+alias pacman='pacman --color auto'
+alias help='run-help'
 
 # cd, ps ...
 alias ..='cd ..'
-alias w='cd'
-alias ps='ps auxf'
+alias psa='ps auxf'
+#alias w='cd'
 
 # commands starting with % for pasting from web
 alias %=' '
 
 #router's current ip, dyndns
-alias myip="sh ~/bin/ipinfo.sh"
+alias myip='sh ~/bin/ipinfo.sh'
 alias mydns='sh ~/bin/dyndns.sh'
 
 #mouse
@@ -45,20 +46,21 @@ alias chrome_dev='chromium --user-data-dir="/home/kfl62/.config/chromium_dev" &'
 alias monica='/home/kfl62/.monicarc && xset -dpms s off s noblank s noexpose'
 
 #mongodb
-alias mongodb='/usr/bin/mongod --dbpath=/home/kfl62/.data/db --directoryperdb --nohttpinterface --noauth --smallfiles'
+alias mongodb='/usr/bin/mongod --bind_ip 0.0.0.0 --storageEngine=wiredTiger --dbpath=/home/kfl62/.local/data/db --directoryperdb'
 alias mongojs='/usr/bin/mongo'
 
 #pacman
-alias pau='pacaur -Syyu'
-alias paS='pacaur -S'
-alias paU='pacaur -U'
-alias pas='pacaur -Ss'
-alias paR='pacaur -Rns'
-alias paI='pacaur -Sii'
-alias paQs='pacaur -Qs'
-alias paQl='pacaur -Ql'
-alias paQo='pacaur -Qo'
-alias pacl='pacaur -Scc && sudo pacman-optimize && sync'
+alias pau='yay -Syyu --devel --timeupdate'
+alias paS='yay -S'
+alias paU='yay -Pu'
+alias pas='yay -Ss'
+alias paR='yay -Rns'
+alias paI='yay -Sii'
+alias paQs='yay -Qs'
+alias paQl='yay -Ql'
+alias paQo='yay -Qo'
+# alias pacl='pacaur -Scc && sudo pacman-optimize && sudo journalctl --vacuum-time=1d && sync'
+alias pacl='yay -Yc && yay -Scc && sudo journalctl --vacuum-time=1d && sync'
 
 #vim plugins
 alias pathogen='cd ~/.config/dotfiles && git submodule update && cd'
@@ -83,10 +85,12 @@ alias buss_trst='cd ~/work/trst_sys_sinatra && bundle exec rackup -p3000'
 alias burc_trst='cd ~/work/trst_sys_sinatra && bundle exec rake console'
 
 #sshfs
-alias sshfs_diren='sshfs kfl62@trst.ro:/srv/smb/work /home/kfl62/sshfs/diren_work -p22222'
-alias sshfs_diren_u='fusermount -u ~/sshfs/diren_work'
+alias m_trst='sshfs kfl62@trst.ro:/ /home/kfl62/sshfs/trst.ro -p 22222 -o nonempty'
+alias u_trst='fusermount -u /home/kfl62/sshfs/trst.ro'
+alias m_router='sshfs root@10.10.10.1:/ /home/kfl62/sshfs/router -p 22222 -o nonempty'
+alias u_router='fusermount -u /home/kfl62/sshfs/router'
 
-#nfsd
+#nfsdkfl
 alias nfsm-lacie='sudo sh -c "mkdir -p /run/media/kfl62/lacie; mount kfl62-hp-00:/mnt/lacie /run/media/kfl62/lacie"'
 alias nfsu-lacie='sudo umount /run/media/kfl62/lacie'
 
@@ -94,8 +98,27 @@ alias nfsu-lacie='sudo umount /run/media/kfl62/lacie'
 alias lan='sudo netctl'
 
 # VirtualBox
-alias win7='sudo modprobe vboxdrv && VBoxManage startvm "Windows 7 (64-bit)"'
 alias win10='sudo modprobe vboxdrv && VBoxManage startvm "Windows 10 (64-bit)"'
+alias xubuntu='sudo modprobe vboxdrv && VBoxManage startvm "Xubuntu"'
+alias arch='sudo modprobe vboxdrv && VBoxManage startvm "Arch"'
+alias arch-start='sudo modprobe vboxdrv && VBoxManage startvm "Arch" --type headless'
+alias arch-stop='VBoxManage controlvm "Arch" acpipowerbutton'
 
 # DUKIntegrator
 alias d206='java -jar /home/kfl62/bin/DUKIntegrator/DUKIntegrator.jar'
+
+# weather
+alias weu='/home/kfl62/.conky/weather.sh update'
+
+# make menuconfig colors (rxvt-unicode, ~-terminfo)
+#alias make="TERM=rxvt-unicode-256color make"
+
+# open terminal via ssh
+alias trst="xfce4-terminal -e 'ssh -Y -p 22222 -t kfl62@trst.ro \"cd /home/kfl62/; zsh\"'"
+alias trst-cleantech="xfce4-terminal -e 'ssh -Y -p 22222 -t kfl62@trst.ro \"cd /srv/www/vhosts/trst_cleantech/trst_sys_sinatra/; zsh\"'"
+alias trst-continet="xfce4-terminal -e 'ssh -Y -p 22222 -t kfl62@trst.ro \"cd /srv/www/vhosts/trst_continent/trst_sys_sinatra/; zsh\"'"
+alias trst-diren="xfce4-terminal -e 'ssh -Y -p 22222 -t kfl62@trst.ro \"cd /srv/www/vhosts/trst_diren/trst_sys_sinatra/; zsh\"'"
+alias trst-diren-ulai="xfce4-terminal -e 'ssh -Y -p 22222 -t kfl62@trst.ro \"cd /srv/www/vhosts/trst_diren-ulei/trst_sys_sinatra/; zsh\"'"
+alias trst-mdpro="xfce4-terminal -e 'ssh -Y -p 22222 -t kfl62@trst.ro \"cd /srv/www/vhosts/trst_mdpro/trst_sys_sinatra/; zsh\"'"
+alias trst-noua="xfce4-terminal -e 'ssh -Y -p 22222 -t kfl62@trst.ro \"cd /srv/www/vhosts/trst_noua/trst_sys_sinatra/; zsh\"'"
+alias trst-test="xfce4-terminal -e 'ssh -Y -p 22222 -t kfl62@trst.ro \"cd /srv/www/vhosts/trst_test/trst_sys_sinatra/; zsh\"'"
