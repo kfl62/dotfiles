@@ -117,14 +117,14 @@ alias weu='/home/kfl62/.conky/weather.sh update'
 #alias make="TERM=rxvt-unicode-256color make"
 
 # open terminal via ssh
-alias trst="xfce4-terminal -e 'ssh -Y -p 22345 -t kfl62@trst.ro \"cd /home/kfl62/; zsh\"'"
-alias trst-cleantech="xfce4-terminal -e 'ssh -Y -p 22345 -t kfl62@trst.ro \"cd /srv/www/vhosts/trst_cleantech/trst_sys_sinatra/; zsh\"'"
-alias trst-continent="xfce4-terminal -e 'ssh -Y -p 22345 -t kfl62@trst.ro \"cd /srv/www/vhosts/trst_continent/trst_sys_sinatra/; zsh\"'"
-alias trst-diren="xfce4-terminal -e 'ssh -Y -p 22345 -t kfl62@trst.ro \"cd /srv/www/vhosts/trst_diren/trst_sys_sinatra/; zsh\"'"
-alias trst-diren-ulei="xfce4-terminal -e 'ssh -Y -p 22345 -t kfl62@trst.ro \"cd /srv/www/vhosts/trst_diren-ulei/trst_sys_sinatra/; zsh\"'"
-alias trst-mdpro="xfce4-terminal -e 'ssh -Y -p 22345 -t kfl62@trst.ro \"cd /srv/www/vhosts/trst_mdpro/trst_sys_sinatra/; zsh\"'"
-alias trst-noua="xfce4-terminal -e 'ssh -Y -p 22345 -t kfl62@trst.ro \"cd /srv/www/vhosts/trst_noua/trst_sys_sinatra/; zsh\"'"
-alias trst-test="xfce4-terminal -e 'ssh -Y -p 22345 -t kfl62@trst.ro \"cd /srv/www/vhosts/trst_test/trst_sys_sinatra/; zsh\"'"
+alias trst="xfce4-terminal -e 'ssh -Y -p 22222 -t kfl62@trst.ro \"cd /home/kfl62/; zsh\"'"
+alias trst-cleantech="xfce4-terminal -e 'ssh -Y -p 22222 -t kfl62@trst.ro \"cd /srv/www/vhosts/trst_cleantech/trst_sys_sinatra/; zsh\"'"
+alias trst-continent="xfce4-terminal -e 'ssh -Y -p 22222 -t kfl62@trst.ro \"cd /srv/www/vhosts/trst_continent/trst_sys_sinatra/; zsh\"'"
+alias trst-diren="xfce4-terminal -e 'ssh -Y -p 22222 -t kfl62@trst.ro \"cd /srv/www/vhosts/trst_diren/trst_sys_sinatra/; zsh\"'"
+alias trst-diren-ulei="xfce4-terminal -e 'ssh -Y -p 22222 -t kfl62@trst.ro \"cd /srv/www/vhosts/trst_diren-ulei/trst_sys_sinatra/; zsh\"'"
+alias trst-mdpro="xfce4-terminal -e 'ssh -Y -p 22222 -t kfl62@trst.ro \"cd /srv/www/vhosts/trst_mdpro/trst_sys_sinatra/; zsh\"'"
+alias trst-noua="xfce4-terminal -e 'ssh -Y -p 22222 -t kfl62@trst.ro \"cd /srv/www/vhosts/trst_noua/trst_sys_sinatra/; zsh\"'"
+alias trst-test="xfce4-terminal -e 'ssh -Y -p 22222 -t kfl62@trst.ro \"cd /srv/www/vhosts/trst_test/trst_sys_sinatra/; zsh\"'"
 
 # kfl62's phone
 alias phone='sh /home/kfl62/bin/01-adb'
