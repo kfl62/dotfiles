@@ -2,3 +2,6 @@
 !.gitignore
 gemrc
 gitconfig
+/zsh/zshrc-anarchy
+/zsh/zshrc-trst
+
