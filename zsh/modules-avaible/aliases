@@ -78,21 +78,8 @@ alias st2='~/bin/SublimeText2/sublime_text &'
 alias buex='bundle exec'
 alias buup='bundle update'
 alias bucl='bundle clean'
-alias bugu='bundle exec guard'
-alias buss='bundle exec rackup -p3000'
+alias buss='bundle exec rackup -o 0.0.0.0 -p3000'
 alias burc='bundle exec rake console'
-alias buss_trst='cd ~/work/trst_sys_sinatra && bundle exec rackup -p3000'
-alias burc_trst='cd ~/work/trst_sys_sinatra && bundle exec rake console'
-
-#sshfs
-#alias m_trst='sshfs kfl62@trst.ro:/ /home/kfl62/sshfs/trst.ro -p 22345 -o nonempty'
-#alias u_trst='fusermount -u /home/kfl62/sshfs/trst.ro'
-#alias m_router='sshfs root@10.10.10.1:/ /home/kfl62/sshfs/router -p 22345 -o nonempty'
-#alias u_router='fusermount -u /home/kfl62/sshfs/router'
-
-#nfsdkfl
-alias nfsm-lacie='sudo sh -c "mkdir -p /run/media/kfl62/lacie; mount kfl62-hp-00:/mnt/lacie /run/media/kfl62/lacie"'
-alias nfsu-lacie='sudo umount /run/media/kfl62/lacie'
 
 # netctl
 alias lan='sudo netctl'
@@ -115,16 +102,6 @@ alias weu='/home/kfl62/.conky/weather.sh update'
 
 # make menuconfig colors (rxvt-unicode, ~-terminfo)
 #alias make="TERM=rxvt-unicode-256color make"
-
-# open terminal via ssh
-alias trst="xfce4-terminal -e 'ssh -Y -p 22345 -t kfl62@trst.ro \"cd /home/kfl62/; zsh\"'"
-alias trst-cleantech="xfce4-terminal -e 'ssh -Y -p 22345 -t kfl62@trst.ro \"cd /srv/www/vhosts/trst_cleantech/trst_sys_sinatra/; zsh\"'"
-alias trst-continent="xfce4-terminal -e 'ssh -Y -p 22345 -t kfl62@trst.ro \"cd /srv/www/vhosts/trst_continent/trst_sys_sinatra/; zsh\"'"
-alias trst-diren="xfce4-terminal -e 'ssh -Y -p 22345 -t kfl62@trst.ro \"cd /srv/www/vhosts/trst_diren/trst_sys_sinatra/; zsh\"'"
-alias trst-diren-ulei="xfce4-terminal -e 'ssh -Y -p 22345 -t kfl62@trst.ro \"cd /srv/www/vhosts/trst_diren-ulei/trst_sys_sinatra/; zsh\"'"
-alias trst-mdpro="xfce4-terminal -e 'ssh -Y -p 22345 -t kfl62@trst.ro \"cd /srv/www/vhosts/trst_mdpro/trst_sys_sinatra/; zsh\"'"
-alias trst-noua="xfce4-terminal -e 'ssh -Y -p 22345 -t kfl62@trst.ro \"cd /srv/www/vhosts/trst_noua/trst_sys_sinatra/; zsh\"'"
-alias trst-test="xfce4-terminal -e 'ssh -Y -p 22345 -t kfl62@trst.ro \"cd /srv/www/vhosts/trst_test/trst_sys_sinatra/; zsh\"'"
 
 # kfl62's phone
 alias phone='sh /home/kfl62/bin/01-adb'
