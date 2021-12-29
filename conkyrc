@@ -1,6 +1,6 @@
 conky.config = {
-  -- background = false,
-  double_buffer = true,
+  background      = false,
+  double_buffer   = true,
   cpu_avg_samples = 2,
   net_avg_samples = 2,
   update_interval = 1.0,
@@ -9,17 +9,17 @@ conky.config = {
   gap_x = 5,
   gap_y = 5,
 
-  own_window = true,
-  own_window_class = 'Conky',
-  own_window_type = 'normal',
-  own_window_transparent = true,
-  own_window_hints = 'undecorated,below,sticky,skip_taskbar,skip_pager',
-  -- own_window_argb_visual = true,
-  -- own_window_argb_value = 0,
+  own_window              = true,
+  own_window_class        = 'Conky',
+  own_window_type         = 'desktop',
+  own_window_transparent  = true,
+  own_window_hints        = 'undecorated,below,sticky,skip_taskbar,skip_pager',
+  own_window_argb_visual  = true,
+  own_window_argb_value   = 0,
 
   use_xft = true,
   xftalpha = 0.5,
-  color0 = 'E4E4E4',
+  color0 = 'EEEEEE',
   color1 = '888888',
   color2 = 'B82424',
   color3 = '88ffff',
@@ -29,16 +29,20 @@ conky.config = {
   draw_shades = false
   -- ${alignr 10}${execi 60 curl -s 10.10.10.1/ip_status.html | sed -n '/\<I\>/{!b;n;p}' | awk '{print $3}'}${color1}
   -- ${alignr 10}${execi 300 curl -s -m10 ipinfo.io/ip}
+  -- ${downspeedgraph lan0 24,200 888888 EEEEEE 1024KiB -t -l}
+  -- ${upspeedgraph lan0 24,200 888888 EEEEEE 1024KiB -t -l}
+  -- ${execi 10 nvidia-smi --query-gpu="temperature.gpu" --format=csv,noheader}.0°C
+  -- ${execi 10 sensors | grep -a temp6 | cut -c16-23 | tail -1}${color1}
 }
 conky.text = [[
 ${alignc}${font Neuropol:size=10}${color1}System Info${font Tahoma:size=8}${color0}${voffset 5}
-${offset 50}${execi 60 whoami} on ${nodename}
-${offset 50}${sysname} ${kernel} on ${machine}
+${offset 50}${execi 60 whoami}  ---  ${nodename}
+${offset 50}${sysname} ${kernel}  ---  ${machine}
 ${offset 50}xfce4  ${execi 60 xfce4-about -V | head -n1 | awk '{print $2}'}
 ${color2}${hr}${color1}${voffset 5}
 ${alignc}${font Neuropol:size=10}CPU Load${font Tahoma:size=8}${color0}${voffset 5}
 ${execi 60 cat /proc/cpuinfo | grep 'model name' | cut -c 18-70|uniq}${color1}
-${cpugraph cpu0 24,140 888888 E4E4E4 -t}
+${cpugraph cpu0 24,140 888888 EEEEEE -t}
 ${offset 5}CPU_1 $color0${cpu cpu1}%$tab$tab$color1 CPU_2 $color0${cpu cpu2}%${alignr 15}$color1 CPU
 ${offset 5}${color1}CPU_3 $color0${cpu cpu3}%$tab$tab$color1 CPU_4 $color0${cpu cpu4}%${alignr 15}${cpu cpu0}%
 ${color2}${hr}${color1}${voffset 5}
@@ -48,9 +52,9 @@ ${alignr}${color0}${swap}${color1} of ${color0}$swapmax${color1} (Swap)
 ${color2}${hr}${color1}${voffset 5}
 ${alignc}${font Neuropol:size=10}${color1}Netwok Load${font Tahoma:size=8}${color0}${voffset 5}
 ${offset 10}IP ${color0}${addr lan0} ${alignr 10}${execi 60 curl -s 10.10.10.1/ip_status.html | sed -n '/\<I\>/{!b;n;p}' | awk '{print $3}'}${color1}
-${downspeedgraph lan0 24,200 888888 E4E4E4 10240KiB -t -l}
+${downspeedgraph lan0 24,200 888888 EEEEEE}
 ${offset 5}(incoming) ${color0}${downspeed lan0}${alignr 5}${color1}Total ${color0}${totaldown lan0}${color1}
-${upspeedgraph lan0 24,200 888888 E4E4E4 10240KiB -t -l}
+${upspeedgraph lan0 24,200 888888 EEEEEE}
 ${offset 5}(outgoing) ${color0}${upspeed lan0}${alignr 5}${color1}Total ${color0}${totalup lan0}${color1}
 ${color2}${hr}${color1}${voffset 5}
 ${alignr}${font Neuropol:size=10}${color1}Disk Usage${font Tahoma:size=8}${color0}${voffset 5}
@@ -61,7 +65,7 @@ ${alignc}${font Neuropol:size=10}${color1}Fans/Temp${font Tahoma:size=8}${voffse
 ${offset 15}Chass${offset 13}${color0}${execi 10 sensors | grep fan3 | cut -c13-23}${color1}
 ${offset 15}CPU${offset 25}${color0}${execi 10 sensors | grep fan1 | cut -c14-23}${color1}
 ${offset 15}CPU${offset 25}${color0}${execi 10 sensors | grep -a temp2 | cut -c16-23 | tail -1}${color1}
-${offset 15}GPU${offset 24}${color0}${execi 10 nvidia-smi -q -d temperature | grep 'GPU Current' | cut -c39-40}.0°C${color1}
+${offset 15}GPU${offset 24}${color0}${execi 10 nvidia-smi --query-gpu="temperature.gpu" --format=csv,noheader}.0°C
 ${color2}${hr}${color1}${voffset 5}
 ${alignc}${font Neuropol:size=10}${color1}Today${font Tahoma:size=8}${color3}${voffset 5}
 ${offset 55}${time %H:%M:%S}${offset 20}${time %a, %d %b. %Y}${voffset 5}
