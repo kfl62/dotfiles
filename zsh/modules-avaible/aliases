@@ -1,13 +1,13 @@
 # other
-alias -g G='| grep'
 alias setclock='sudo ntpd -q && sudo hwclock -w'
 alias pacman='pacman --color auto'
 alias help='run-help'
+alias sudo='sudo '
+alias nano='nano -c'
 
 # cd, ps ...
 alias ..='cd ..'
 alias psa='ps auxf'
-#alias w='cd'
 
 # commands starting with % for pasting from web
 alias %=' '
@@ -16,34 +16,11 @@ alias %=' '
 alias myip='sh ~/bin/ipinfo.sh'
 alias mydns='sh ~/bin/dyndns.sh'
 
-#mouse
-alias mousenav='sudo lomoco -8 --sms'
-alias mousedev='sudo lomoco -4 --sms'
-
 #tail
-alias tail-log-x='Terminal --geometry=185x90+0+0 --hide-borders --hide-menubar --hide-toolbars --command="journalctl -f" &'
 alias tail-log='journalctl -f -n150'
 
 #exit usefull when using yakuake :)
 alias q='exit'
-
-#mpd
-alias mpd='sudo rcmpd start'
-alias mpds='sudo rcmpd stop'
-alias mpdd='~/bin/mpd2kopete start'
-alias mpdds='~/bin/mpd2kopete stop'
-alias mpdt='tail ~/.mpd2kopete/mpd_history.log'
-alias mpdtf='tail -f ~/.mpd2kopete/mpd_history.log'
-alias mpct='mpc toggle'
-alias mpcp='mpc play'
-alias mpcs='mpc stop'
-
-#vim
-#alias gvim='gvim -cNERDTreeToggle'
-
-alias chrome_dev='chromium --user-data-dir="/home/kfl62/.config/chromium_dev" &'
-
-alias monica='/home/kfl62/.monicarc && xset -dpms s off s noblank s noexpose'
 
 #mongodb
 alias mongodb='/usr/bin/mongod --bind_ip 0.0.0.0 --storageEngine=wiredTiger --dbpath=/home/kfl62/.local/data/db --directoryperdb'
@@ -59,66 +36,36 @@ alias paI='yay -Sii'
 alias paQs='yay -Qs'
 alias paQl='yay -Ql'
 alias paQo='yay -Qo'
-# alias pacl='pacaur -Scc && sudo pacman-optimize && sudo journalctl --vacuum-time=1d && sync'
-alias pacl='yay -Yc && yay -Scc && sudo journalctl --vacuum-time=1d && sync'
-
-#vim plugins
-alias pathogen='cd ~/.config/dotfiles && git submodule update && cd'
-
-#ibutton
-alias sqreinit='.bundle/bin/sequel -m ./db/migrations -M 0 sqlite://db/ibutton.sqlite3 && .bundle/bin/sequel -m ./db/migrations -M 14 sqlite://db/ibutton.sqlite3'
-
-#Sublime Text2
-alias st2='~/bin/SublimeText2/sublime_text &'
-
-#Skype
-alias skype='LD_PRELOAD=/usr/lib/libv4l/v4l1compat.so skype'
+alias pacl='yay -Yc && yay -Scc && sudo journalctl --vacuum-time=1d --quiet && sync'
 
 #bundler
 alias buex='bundle exec'
 alias buup='bundle update'
 alias bucl='bundle clean'
 alias bugu='bundle exec guard'
-alias buss='bundle exec rackup -p3000'
+alias buss='bundle exec rackup -o 0.0.0.0 -p3000'
 alias burc='bundle exec rake console'
 alias buss_trst='cd ~/work/trst_sys_sinatra && bundle exec rackup -p3000'
 alias burc_trst='cd ~/work/trst_sys_sinatra && bundle exec rake console'
 
-#sshfs
-alias m_trst='sshfs kfl62@trst.ro:/ /home/kfl62/sshfs/trst.ro -p 22222 -o nonempty'
-alias u_trst='fusermount -u /home/kfl62/sshfs/trst.ro'
-alias m_router='sshfs root@10.10.10.1:/ /home/kfl62/sshfs/router -p 22222 -o nonempty'
-alias u_router='fusermount -u /home/kfl62/sshfs/router'
-
-#nfsdkfl
-alias nfsm-lacie='sudo sh -c "mkdir -p /run/media/kfl62/lacie; mount kfl62-hp-00:/mnt/lacie /run/media/kfl62/lacie"'
-alias nfsu-lacie='sudo umount /run/media/kfl62/lacie'
-
-# netctl
-alias lan='sudo netctl'
-
 # VirtualBox
 alias win10='sudo modprobe vboxdrv && VBoxManage startvm "Windows 10 (64-bit)"'
-alias xubuntu='sudo modprobe vboxdrv && VBoxManage startvm "Xubuntu"'
-alias arch='sudo modprobe vboxdrv && VBoxManage startvm "Arch"'
-alias arch-start='sudo modprobe vboxdrv && VBoxManage startvm "Arch" --type headless'
-alias arch-stop='VBoxManage controlvm "Arch" acpipowerbutton'
+alias ubuntu='sudo modprobe vboxdrv && VBoxManage startvm "Ubuntu 2005.04"'
+alias fedora='sudo modprobe vboxdrv && VBoxManage startvm "Fedora 6 2006.10"'
+alias suse='sudo modprobe vboxdrv && VBoxManage startvm "SuSE 9.1 2004.04"'
+alias arch-vba='sudo modprobe vboxdrv && VBoxManage startvm "Arch-vba" --type headless'
+alias arch-old='sudo modprobe vboxdrv && VBoxManage startvm "Arch-old" --type headless'
+alias arch-test='sudo modprobe vboxdrv && VBoxManage startvm "Arch-test" --type headless'
+alias debian='sudo modprobe vboxdrv && VBoxManage startvm "Debian 9.13.0" --type headless'
 
-# DUKIntegrator
-alias d206='java -jar /home/kfl62/bin/DUKIntegrator/DUKIntegrator.jar'
+# ssh Trst
+alias trst="xfce4-terminal -e 'ssh -Y -t kfl62@trst.ro \"cd /home/kfl62/; zsh\"'"
+
+# delete log files
+alias clean='sudo rm /var/log/journal/8014fe0244ac451fae36a486335999cd/* && sudo rm -f /var/lib/systemd/coredump/* && echo "Cleared \ Emptied files ..."'
 
 # weather
 alias weu='/home/kfl62/.conky/weather.sh update'
 
-# make menuconfig colors (rxvt-unicode, ~-terminfo)
-#alias make="TERM=rxvt-unicode-256color make"
-
-# open terminal via ssh
-alias trst="xfce4-terminal -e 'ssh -Y -p 22222 -t kfl62@trst.ro \"cd /home/kfl62/; zsh\"'"
-alias trst-cleantech="xfce4-terminal -e 'ssh -Y -p 22222 -t kfl62@trst.ro \"cd /srv/www/vhosts/trst_cleantech/trst_sys_sinatra/; zsh\"'"
-alias trst-continet="xfce4-terminal -e 'ssh -Y -p 22222 -t kfl62@trst.ro \"cd /srv/www/vhosts/trst_continent/trst_sys_sinatra/; zsh\"'"
-alias trst-diren="xfce4-terminal -e 'ssh -Y -p 22222 -t kfl62@trst.ro \"cd /srv/www/vhosts/trst_diren/trst_sys_sinatra/; zsh\"'"
-alias trst-diren-ulai="xfce4-terminal -e 'ssh -Y -p 22222 -t kfl62@trst.ro \"cd /srv/www/vhosts/trst_diren-ulei/trst_sys_sinatra/; zsh\"'"
-alias trst-mdpro="xfce4-terminal -e 'ssh -Y -p 22222 -t kfl62@trst.ro \"cd /srv/www/vhosts/trst_mdpro/trst_sys_sinatra/; zsh\"'"
-alias trst-noua="xfce4-terminal -e 'ssh -Y -p 22222 -t kfl62@trst.ro \"cd /srv/www/vhosts/trst_noua/trst_sys_sinatra/; zsh\"'"
-alias trst-test="xfce4-terminal -e 'ssh -Y -p 22222 -t kfl62@trst.ro \"cd /srv/www/vhosts/trst_test/trst_sys_sinatra/; zsh\"'"
+# kfl62's phone
+#alias phone='sh /home/kfl62/bin/01-adb'
