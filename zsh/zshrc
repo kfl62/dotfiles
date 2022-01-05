@@ -1,3 +1,6 @@
+# PATH
+export PATH="$HOME/bin:$PATH"
+
 # rbenv, for testing
 eval "$(rbenv init -)"
 
@@ -7,33 +10,50 @@ export NO_AT_BRIDGE=1
 #export TERM=rxvt-unicode-256color
 export EDITOR='/usr/bin/nano'
 export VISUAL='/usr/bin/nano'
-export PATH="$PATH:$HOME/bin"
 
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /etc/profile.d/cnf.sh
+#source /etc/profile.d/cnf.sh
 
 for file in ~/.config/dotfiles/zsh/modules-enabled/*; do
   source $file
 done
 
+### Set/unset ZSH options
 setopt nullglob
-setopt NO_BG_NICE					      # don't nice background tasks
+setopt NO_BG_NICE                 # don't nice background tasks
 setopt NO_HUP
 setopt NO_LIST_BEEP
 setopt PROMPTSUBST
 setopt CORRECT
 setopt COMPLETE_IN_WORD
 setopt IGNORE_EOF
-
-# History
-setopt APPEND_HISTORY					  # adds history
-setopt INC_APPEND_HISTORY				# adds history incrementally and share it across sessions
-setopt SHARE_HISTORY					  # share history between sessions ???
-setopt EXTENDED_HISTORY					# add timestamps to history
+setopt APPEND_HISTORY             # adds history
+setopt INC_APPEND_HISTORY         # adds history incrementally and share it across sessions
+setopt SHARE_HISTORY              # share history between sessions ???
+setopt EXTENDED_HISTORY           # add timestamps to history
 setopt HIST_VERIFY
-setopt HIST_IGNORE_ALL_DUPS			# don't record dupes in history
+setopt HIST_IGNORE_ALL_DUPS       # don't record dupes in history
 setopt HIST_REDUCE_BLANKS
 setopt HIST_FCNTL_LOCK
+setopt MENUCOMPLETE
+setopt ALL_EXPORT
+unsetopt BG_NICE
+
+### Set/unset  shell options
+setopt   notify globdots correct pushdtohome cdablevars autolist
+setopt   correctall autocd recexact longlistjobs
+setopt   autoresume histignoredups pushdsilent
+setopt   autopushd pushdminus extendedglob rcquotes mailwarning
+unsetopt bgnice autoparamslash
+
+### Autoload zsh modules when they are referenced
+autoload -U history-search-end
+zmodload -a zsh/stat stat
+zmodload -a zsh/zpty zpty
+zmodload -a zsh/zprof zprof
+#zmodload -ap zsh/mapfile mapfile
+zle -N history-beginning-search-backward-end history-search-end
+zle -N history-beginning-search-forward-end history-search-end
 
 HISTFILE=~/.zsh_history
 HISTSIZE=10000
@@ -68,6 +88,9 @@ key[PageDown]="$terminfo[knp]"
 [[ -n "$key[Left]"      ]] && bindkey -- "$key[Left]"      backward-char
 [[ -n "$key[Right]"     ]] && bindkey -- "$key[Right]"     forward-char
 
+bindkey "^[[1;5A" history-beginning-search-backward
+bindkey "^[[1;5B" history-beginning-search-forward
+
 # Finally, make sure the terminal is in application mode, when zle is
 # active. Only then are the values from $terminfo valid.
 if (( ${+terminfo[smkx]} )) && (( ${+terminfo[rmkx]} )); then
@@ -81,8 +104,16 @@ if (( ${+terminfo[smkx]} )) && (( ${+terminfo[rmkx]} )); then
     zle -N zle-line-finish
 fi
 
-bindkey "^[[1;5A" history-beginning-search-backward
-bindkey "^[[1;5B" history-beginning-search-forward
+# SSH Completion
+zstyle ':completion:*:scp:*' tag-order \
+   files users 'hosts:-host hosts:-domain:domain hosts:-ipaddr"IP\ Address *'
+zstyle ':completion:*:scp:*' group-order \
+   files all-files users hosts-domain hosts-host hosts-ipaddr
+zstyle ':completion:*:ssh:*' tag-order \
+   users 'hosts:-host hosts:-domain:domain hosts:-ipaddr"IP\ Address *'
+zstyle ':completion:*:ssh:*' group-order \
+   hosts-domain hosts-host users hosts-ipaddr
+zstyle '*' single-ignored show
 
 # Prompt
 autoload -Uz vcs_info
