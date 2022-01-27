@@ -47,7 +47,7 @@ ${offset 5}CPU_1 $color0${cpu cpu1}%$tab$tab$color1 CPU_2 $color0${cpu cpu2}%${a
 ${offset 5}${color1}CPU_3 $color0${cpu cpu3}%$tab$tab$color1 CPU_4 $color0${cpu cpu4}%${alignr 15}${cpu cpu0}%
 ${color2}${hr}${color1}${voffset 5}
 ${alignr}${font Neuropol:size=10}${color1}Memory Load${font Tahoma:size=8}${color0}${voffset 5}
-${alignr}${color0}${mem}${color1} of ${color0}$memmax${color1}  (RAM)
+${alignr}${color0}${legacymem}${color1} of ${color0}$memmax${color1}  (RAM)
 ${alignr}${color0}${swap}${color1} of ${color0}$swapmax${color1} (Swap)
 ${color2}${hr}${color1}${voffset 5}
 ${alignc}${font Neuropol:size=10}${color1}Netwok Load${font Tahoma:size=8}${color0}${voffset 5}
