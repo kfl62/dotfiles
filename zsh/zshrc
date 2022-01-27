@@ -55,7 +55,7 @@ zmodload -a zsh/zprof zprof
 zle -N history-beginning-search-backward-end history-search-end
 zle -N history-beginning-search-forward-end history-search-end
 
-HISTFILE=~/.zsh_history
+HISTFILE=~/.config/dotfiles/zsh/.zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
 
