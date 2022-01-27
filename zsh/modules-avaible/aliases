@@ -49,14 +49,12 @@ alias buss_trst='cd ~/work/trst_sys_sinatra && bundle exec rackup -p3000'
 alias burc_trst='cd ~/work/trst_sys_sinatra && bundle exec rake console'
 
 # VirtualBox
-alias win10='sudo modprobe vboxdrv && VBoxManage startvm "Windows 10 (64-bit)"'
+alias win11='sudo modprobe vboxdrv && VBoxManage startvm "Windows 11 (64-bit)"'
 alias ubuntu='sudo modprobe vboxdrv && VBoxManage startvm "Ubuntu 2005.04"'
 alias fedora='sudo modprobe vboxdrv && VBoxManage startvm "Fedora 6 2006.10"'
 alias suse='sudo modprobe vboxdrv && VBoxManage startvm "SuSE 9.1 2004.04"'
+alias debian='sudo modprobe vboxdrv && VBoxManage startvm "Debian 9.13.0"'
 alias arch-vba='sudo modprobe vboxdrv && VBoxManage startvm "Arch-vba" --type headless'
-alias arch-old='sudo modprobe vboxdrv && VBoxManage startvm "Arch-old" --type headless'
-alias arch-test='sudo modprobe vboxdrv && VBoxManage startvm "Arch-test" --type headless'
-alias debian='sudo modprobe vboxdrv && VBoxManage startvm "Debian 9.13.0" --type headless'
 
 # ssh Trst
 alias trst="xfce4-terminal -e 'ssh -Y -t kfl62@trst.ro \"cd /home/kfl62/; zsh\"'"
