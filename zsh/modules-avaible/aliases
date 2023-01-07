@@ -1,9 +1,9 @@
 # other
 alias setclock='sudo ntpd -q && sudo hwclock -w'
 alias pacman='pacman --color auto'
-alias help='run-help'
 alias sudo='sudo '
 alias nano='nano -c'
+alias rm-pycache='find /usr/lib/python3.10/. | grep -E "(/__pycache__$|\.pyc$|\.pyo$)" | sudo xargs rm -rf'
 
 # cd, ps ...
 alias ..='cd ..'
@@ -36,7 +36,9 @@ alias paI='yay -Sii'
 alias paQs='yay -Qs'
 alias paQl='yay -Ql'
 alias paQo='yay -Qo'
-alias pacl='yay -Yc && yay -Scc && sudo journalctl --vacuum-time=1d --quiet && sync'
+alias pacl='yay -Yc && yay -Scc && sudo journalctl --vacuum-time=1d --quiet && sync \
+            && sudo rm -f /var/log/journal/ebec60456e5047328bc093d10f637969/* \
+            && sudo rm -f /var/lib/systemd/coredump/* && printf "\nRemoved all...\n\n"'
 
 #bundler
 alias buex='bundle exec'
@@ -53,17 +55,14 @@ alias win11='sudo modprobe vboxdrv && VBoxManage startvm "Windows 11 (64-bit)"'
 alias ubuntu='sudo modprobe vboxdrv && VBoxManage startvm "Ubuntu 2005.04"'
 alias fedora='sudo modprobe vboxdrv && VBoxManage startvm "Fedora 6 2006.10"'
 alias suse='sudo modprobe vboxdrv && VBoxManage startvm "SuSE 9.1 2004.04"'
-alias debian='sudo modprobe vboxdrv && VBoxManage startvm "Debian 9.13.0"'
+alias manjaro='sudo modprobe vboxdrv && VBoxManage startvm "Manjaro"'
 alias arch-vba='sudo modprobe vboxdrv && VBoxManage startvm "Arch-vba" --type headless'
-
-# ssh Trst
-alias trst="xfce4-terminal -e 'ssh -Y -t kfl62@trst.ro \"cd /home/kfl62/; zsh\"'"
-
-# delete log files
-alias clean='sudo rm /var/log/journal/8014fe0244ac451fae36a486335999cd/* && sudo rm -f /var/lib/systemd/coredump/* && echo "Cleared \ Emptied files ..."'
 
 # weather
 alias weu='/home/kfl62/.conky/weather.sh update'
 
 # kfl62's phone
 #alias phone='sh /home/kfl62/bin/01-adb'
+
+# suspend, hibernate, sleep
+alias sleep='systemctl suspend && exit'
