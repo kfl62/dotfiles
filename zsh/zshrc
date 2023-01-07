@@ -4,6 +4,9 @@ export PATH="$HOME/bin:$PATH"
 # rbenv, for testing
 eval "$(rbenv init -)"
 
+# Remove xsession-errors
+rm -f ~/.xsession-errors
+
 #tmp solution (testing)
 export NO_AT_BRIDGE=1
 
