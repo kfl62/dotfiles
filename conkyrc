@@ -65,11 +65,11 @@ ${alignc}${font Neuropol:size=10}${color1}Fans/Temp${font Tahoma:size=8}${voffse
 ${offset 15}Chass${offset 13}${color0}${execi 10 sensors | grep fan3 | cut -c13-23}${color1}
 ${offset 15}CPU${offset 25}${color0}${execi 10 sensors | grep fan1 | cut -c14-23}${color1}
 ${offset 15}CPU${offset 25}${color0}${execi 10 sensors | grep -a temp2 | cut -c16-23 | tail -1}${color1}
-${offset 15}GPU${offset 24}${color0}${execi 10 nvidia-smi --query-gpu="temperature.gpu" --format=csv,noheader}.0°C
+${offset 15}GPU${offset 24}${color0}${execi 10 sensors | grep -a temp6 | cut -c16-23 | tail -1}${color1}
 ${color2}${hr}${color1}${voffset 5}
 ${alignc}${font Neuropol:size=10}${color1}Today${font Tahoma:size=8}${color3}${voffset 5}
 ${offset 55}${time %H:%M:%S}${offset 20}${time %a, %d %b. %Y}${voffset 5}
-${image ~/.conky/weather.png -p 20,615 -s 24x24 -n}${offset 55}\
+${image ~/.conky/weather.png -p 15,615 -s 26x26 -n}${offset 55}\
 ${color0}${execi 10 /home/kfl62/.conky/weather.sh data}
 ${color2}${hr}${color1}${voffset 5}
 ${alignc}ă î   ș ț â  ${color0}…${color1}  í   ö ü ó   ő ú   é á ű
