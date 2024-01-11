@@ -3,7 +3,8 @@ alias setclock='sudo ntpd -q && sudo hwclock -w'
 alias pacman='pacman --color auto'
 alias sudo='sudo '
 alias nano='nano -c'
-alias rm-pycache='find /usr/lib/python3.10/. | grep -E "(/__pycache__$|\.pyc$|\.pyo$)" | sudo xargs rm -rf'
+alias rm-pycache='find /usr/lib/python3.11/. | grep -E "(/__pycache__$|\.pyc$|\.pyo$)" | sudo xargs rm -rf'
+alias rm-nvidia='sudo rm -rf /var/lib/dkms/nvidia/390.157/*-lts/x86_64/log/*'
 
 # cd, ps ...
 alias ..='cd ..'
@@ -13,8 +14,8 @@ alias psa='ps auxf'
 alias %=' '
 
 #router's current ip, dyndns
-alias myip='sh ~/bin/ipinfo.sh'
-alias mydns='sh ~/bin/dyndns.sh'
+alias myip='sh  ~/bin/ipinfo.sh'
+alias mydns='sh ~/bin/bddc.sh'
 
 #tail
 alias tail-log='journalctl -f -n150'
@@ -29,15 +30,17 @@ alias mongojs='/usr/bin/mongo'
 #pacman
 alias pau='yay -Syyu --devel --timeupdate'
 alias paS='yay -S'
-alias paU='yay -Pu'
 alias pas='yay -Ss'
 alias paR='yay -Rns'
 alias paI='yay -Sii'
-alias paQs='yay -Qs'
-alias paQl='yay -Ql'
-alias paQo='yay -Qo'
+alias paQs='yay -Qs'                       # search locally installed packages
+alias paQl='yay -Ql'                       # list files owned by a package
+alias paQo='yay -Qo'                       # find which package owns a file
+alias paQg='yay -Qg'                       # view all installed members of a package group
+alias paur='yay -Qm'                       # packages installed from AUR
+alias past='yay -Ps'                       # package statistics
 alias pacl='yay -Yc && yay -Scc && sudo journalctl --vacuum-time=1d --quiet && sync \
-            && sudo rm -f /var/log/journal/ebec60456e5047328bc093d10f637969/* \
+            && sudo rm -f /var/log/journal/*/* \
             && sudo rm -f /var/lib/systemd/coredump/* && printf "\nRemoved all...\n\n"'
 
 #bundler
@@ -51,11 +54,10 @@ alias buss_trst='cd ~/work/trst_sys_sinatra && bundle exec rackup -p3000'
 alias burc_trst='cd ~/work/trst_sys_sinatra && bundle exec rake console'
 
 # VirtualBox
-alias win11='sudo modprobe vboxdrv && VBoxManage startvm "Windows 11 (64-bit)"'
+alias win11='sudo modprobe vboxdrv && VBoxManage startvm "Windows 11"'
 alias ubuntu='sudo modprobe vboxdrv && VBoxManage startvm "Ubuntu 2005.04"'
 alias fedora='sudo modprobe vboxdrv && VBoxManage startvm "Fedora 6 2006.10"'
 alias suse='sudo modprobe vboxdrv && VBoxManage startvm "SuSE 9.1 2004.04"'
-alias manjaro='sudo modprobe vboxdrv && VBoxManage startvm "Manjaro"'
 alias arch-vba='sudo modprobe vboxdrv && VBoxManage startvm "Arch-vba" --type headless'
 
 # weather
