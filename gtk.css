@@ -2,10 +2,9 @@
 
 .xfce4-panel.panel {
   /* change the background-color to match the background color of the panel */
-  background-color: #1B1B1B;
+  background-color: #202020;  /* #1B1B1B; */
   color: #FFFFFF;
-  text-shadow: none;
-  -gtk-icon-shadow: none; }
+  text-shadow: none;}
 .xfce4-panel.panel button.flat, .xfce4-panel.panel button.sidebar-button {
   /* the foreground color of the text */
   color: #FFFFFF;
@@ -18,5 +17,4 @@
 .xfce4-panel.panel button.flat:active, .xfce4-panel.panel button.sidebar-button:active, .xfce4-panel.panel button.flat:checked, .xfce4-panel.panel button.sidebar-button:checked {
   color: #FFFFFF;
   border: none;
-  background-color: rgba(0, 0, 0, 0.0);
-}
+  background-color: rgba(0, 0, 0, 0.0); }
