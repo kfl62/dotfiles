@@ -1,9 +1,9 @@
 # other
 alias setclock='sudo ntpd -q && sudo hwclock -w'
 alias pacman='pacman --color auto'
-alias help='run-help'
 alias sudo='sudo '
 alias nano='nano -c'
+alias rm-pycache='find /usr/lib/python3.*/. | grep -E "(/__pycache__$|\.pyc$|\.pyo$)" | sudo xargs rm -rf'
 
 # cd, ps ...
 alias ..='cd ..'
@@ -13,8 +13,8 @@ alias psa='ps auxf'
 alias %=' '
 
 #router's current ip, dyndns
-alias myip='sh ~/bin/ipinfo.sh'
-alias mydns='sh ~/bin/dyndns.sh'
+alias myip='sh  ~/bin/ipinfo.sh'
+alias mydns='sh ~/bin/bddc.sh'
 
 #tail
 alias tail-log='journalctl -f -n150'
@@ -29,41 +29,52 @@ alias mongojs='/usr/bin/mongo'
 #pacman
 alias pau='yay -Syyu --devel --timeupdate'
 alias paS='yay -S'
-alias paU='yay -Pu'
 alias pas='yay -Ss'
 alias paR='yay -Rns'
 alias paI='yay -Sii'
-alias paQs='yay -Qs'
-alias paQl='yay -Ql'
-alias paQo='yay -Qo'
-alias pacl='yay -Yc && yay -Scc && sudo journalctl --vacuum-time=1d --quiet && sync'
+alias paQi='yay -Qi'                       # package informatons
+alias paQs='yay -Qs'                       # search locally installed packages
+alias paQl='yay -Ql'                       # list files owned by a package
+alias paQo='yay -Qo'                       # find which package owns a file
+alias paQg='yay -Qg'                       # view all installed members of a package group
+alias paQe='yay -Qet'                      # view explicitly installed packages
+alias paur='yay -Qm'                       # packages installed from AUR
+alias past='yay -Ps'                       # package statistics
+alias pacl='yay -Yc && yay -Scc && sudo journalctl --vacuum-time=1d --quiet && sync \
+            && sudo rm -f /var/log/journal/*/* \
+            && sudo rm -f /var/lib/systemd/coredump/* \
+            && sudo rm -rf /var/lib/dkms/nvidia/*/*-lts/x86_64/log/* \
+            && printf "\nRemoved all...\n\n"'
 
 #bundler
 alias buex='bundle exec'
 alias buup='bundle update'
 alias bucl='bundle clean'
-alias bugu='bundle exec guard'
 alias buss='bundle exec rackup -o 0.0.0.0 -p3000'
 alias burc='bundle exec rake console'
-alias buss_trst='cd ~/work/trst_sys_sinatra && bundle exec rackup -p3000'
-alias burc_trst='cd ~/work/trst_sys_sinatra && bundle exec rake console'
 
 # VirtualBox
-alias win11='sudo modprobe vboxdrv && VBoxManage startvm "Windows 11 (64-bit)"'
 alias ubuntu='sudo modprobe vboxdrv && VBoxManage startvm "Ubuntu 2005.04"'
 alias fedora='sudo modprobe vboxdrv && VBoxManage startvm "Fedora 6 2006.10"'
 alias suse='sudo modprobe vboxdrv && VBoxManage startvm "SuSE 9.1 2004.04"'
-alias debian='sudo modprobe vboxdrv && VBoxManage startvm "Debian 9.13.0"'
+alias win='sudo modprobe vboxdrv && VBoxManage startvm "Windows"'
+alias arch-vbt='sudo modprobe vboxdrv && VBoxManage startvm "Arch-vbt"'
 alias arch-vba='sudo modprobe vboxdrv && VBoxManage startvm "Arch-vba" --type headless'
-
-# ssh Trst
-alias trst="xfce4-terminal -e 'ssh -Y -t kfl62@trst.ro \"cd /home/kfl62/; zsh\"'"
-
-# delete log files
-alias clean='sudo rm /var/log/journal/8014fe0244ac451fae36a486335999cd/* && sudo rm -f /var/lib/systemd/coredump/* && echo "Cleared \ Emptied files ..."'
+alias arch-vba-stop='vboxmanage controlvm "Arch-vba" poweroff > /dev/null 2>1'
 
 # weather
 alias weu='/home/kfl62/.conky/weather.sh update'
 
 # kfl62's phone
 #alias phone='sh /home/kfl62/bin/01-adb'
+
+# suspend, hibernate, sleep
+alias sleep='systemctl suspend && exit'
+
+#sshfs
+alias m_router='sshfs root@kfl62-router.lan:/ /mnt/kfl62-router -p 22345'
+alias m_trst='sshfs kfl62@trst.ro:/ /mnt/kfl62-trst -p 22345'
+alias m_vba='sshfs kfl62@kfl62-vba.lan:/ /mnt/kfl62-vba -p 22345'
+alias m_vbt='sshfs kfl62@kfl62-vbt.lan:/ /mnt/kfl62-vbt -p 22345'
+alias u_all='fusermount -u /mnt/kfl62-router > /dev/null 2>1 | fusermount -u /mnt/kfl62-trst > /dev/null 2>&1
+             fusermount -u /mnt/kfl62-vba > /dev/null 2>&1 | fusermount -u /mnt/kfl62-vbt > /dev/null 2>&1'

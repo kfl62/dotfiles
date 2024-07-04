@@ -6,6 +6,7 @@ eval "$(rbenv init -)"
 
 #tmp solution (testing)
 export NO_AT_BRIDGE=1
+export LESSHISTFILE=-
 
 #export TERM=rxvt-unicode-256color
 export EDITOR='/usr/bin/nano'
