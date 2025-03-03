@@ -40,7 +40,8 @@ alias paQg='yay -Qg'                       # view all installed members of a pac
 alias paQe='yay -Qet'                      # view explicitly installed packages
 alias paur='yay -Qm'                       # packages installed from AUR
 alias past='yay -Ps'                       # package statistics
-alias pacl='yay -Yc && yay -Scc && sudo journalctl --vacuum-time=1d --quiet && sync \
+alias pacl='yes | yay -Scc && yay -Yc \
+            && sudo journalctl --vacuum-time=1d --quiet && sync \
             && sudo rm -f /var/log/journal/*/* \
             && sudo rm -f /var/lib/systemd/coredump/* \
             && sudo rm -rf /var/lib/dkms/nvidia/*/*-lts/x86_64/log/* \
@@ -58,9 +59,7 @@ alias ubuntu='sudo modprobe vboxdrv && VBoxManage startvm "Ubuntu 2005.04"'
 alias fedora='sudo modprobe vboxdrv && VBoxManage startvm "Fedora 6 2006.10"'
 alias suse='sudo modprobe vboxdrv && VBoxManage startvm "SuSE 9.1 2004.04"'
 alias win='sudo modprobe vboxdrv && VBoxManage startvm "Windows"'
-alias arch-vbt='sudo modprobe vboxdrv && VBoxManage startvm "Arch-vbt"'
 alias arch-vba='sudo modprobe vboxdrv && VBoxManage startvm "Arch-vba" --type headless'
-alias arch-vba-stop='vboxmanage controlvm "Arch-vba" poweroff > /dev/null 2>1'
 
 # weather
 alias weu='/home/kfl62/.conky/weather.sh update'
@@ -68,13 +67,9 @@ alias weu='/home/kfl62/.conky/weather.sh update'
 # kfl62's phone
 #alias phone='sh /home/kfl62/bin/01-adb'
 
-# suspend, hibernate, sleep
-alias sleep='systemctl suspend && exit'
-
 #sshfs
-alias m_router='sshfs root@kfl62-router.lan:/ /mnt/kfl62-router -p 22345'
-alias m_trst='sshfs kfl62@trst.ro:/ /mnt/kfl62-trst -p 22345'
-alias m_vba='sshfs kfl62@kfl62-vba.lan:/ /mnt/kfl62-vba -p 22345'
-alias m_vbt='sshfs kfl62@kfl62-vbt.lan:/ /mnt/kfl62-vbt -p 22345'
-alias u_all='fusermount -u /mnt/kfl62-router > /dev/null 2>1 | fusermount -u /mnt/kfl62-trst > /dev/null 2>&1
-             fusermount -u /mnt/kfl62-vba > /dev/null 2>&1 | fusermount -u /mnt/kfl62-vbt > /dev/null 2>&1'
+alias m-router='sshfs root@kfl62-router.lan:/ /mnt/kfl62-router -p 22'
+alias m-trst='sshfs kfl62@trst.ro:/ /mnt/kfl62-trst -p 22'
+alias m-vba='sshfs kfl62@kfl62-vba.lan:/ /mnt/kfl62-vba -p 22'
+alias u-all='fusermount -uq /mnt/kfl62-router; fusermount -uq /mnt/kfl62-trst;\
+             fusermount -uq /mnt/kfl62-vba'
