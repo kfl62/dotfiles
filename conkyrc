@@ -45,7 +45,7 @@ conky.text = [[
 ${alignc}${font Neuropol:size=10}${color1}System Info${font Tahoma:size=8}${color0}${voffset 5}
 ${offset 50}${execi 60 whoami}  ---  ${nodename}
 ${offset 50}${sysname} ${kernel}  ---  ${machine}
-#${offset 50}Nvidia Driver --- xf86-video-fbdev
+#${offset 50}Nvidia Driver --- No driver :)
 ${offset 50}Nvidia Driver --- ${execi 10 nvidia-smi --query-gpu=driver_version --format=csv,noheader --id=0}
 ${offset 50}xfce4  ${execi 60 xfce4-about -V | head -n1 | awk '{print $2}'}
 ${color2}${hr}${color1}${voffset 5}
