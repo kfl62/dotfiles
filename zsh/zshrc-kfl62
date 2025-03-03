@@ -1,9 +1,6 @@
 # PATH
 export PATH="$HOME/bin:$PATH"
 
-# rbenv, for testing
-eval "$(rbenv init -)"
-
 #tmp solution (testing)
 export NO_AT_BRIDGE=1
 export LESSHISTFILE=-
@@ -11,8 +8,6 @@ export LESSHISTFILE=-
 #export TERM=rxvt-unicode-256color
 export EDITOR='/usr/bin/nano'
 export VISUAL='/usr/bin/nano'
-
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 for file in ~/.config/dotfiles/zsh/modules-enabled/*; do
   source $file
@@ -83,13 +78,10 @@ key[PageDown]="$terminfo[knp]"
 [[ -n "$key[Insert]"    ]] && bindkey -- "$key[Insert]"    overwrite-mode
 [[ -n "$key[Backspace]" ]] && bindkey -- "$key[Backspace]" backward-delete-char
 [[ -n "$key[Delete]"    ]] && bindkey -- "$key[Delete]"    delete-char
-[[ -n "$key[Up]"        ]] && bindkey -- "$key[Up]"        up-line-or-history
-[[ -n "$key[Down]"      ]] && bindkey -- "$key[Down]"      down-line-or-history
+[[ -n "$key[Up]"        ]] && bindkey -- "$key[Up]"        history-beginning-search-backward
+[[ -n "$key[Down]"      ]] && bindkey -- "$key[Down]"      history-beginning-search-forward
 [[ -n "$key[Left]"      ]] && bindkey -- "$key[Left]"      backward-char
 [[ -n "$key[Right]"     ]] && bindkey -- "$key[Right]"     forward-char
-
-bindkey "^[[1;5A" history-beginning-search-backward
-bindkey "^[[1;5B" history-beginning-search-forward
 
 # Finally, make sure the terminal is in application mode, when zle is
 # active. Only then are the values from $terminfo valid.
@@ -125,5 +117,11 @@ zstyle ':vcs_info:git:*' formats "[%b]"
 if ps $PPID | grep mc; then
   PROMPT='%m %3~${vcs_info_msg_0_} > '
 else
-  PROMPT='%B%F{cyan}%m%f %3~%b%F{red}${vcs_info_msg_0_}%f > '
+  PROMPT='%B%F{cyan}%m%f %3~%b%F{green}${vcs_info_msg_0_}%f > '
 fi
+
+# rbenv, for testing
+eval "$(rbenv init -)"
+
+# syntax highlighting
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
