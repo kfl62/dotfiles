@@ -3,7 +3,6 @@ alias setclock='sudo ntpd -q && sudo hwclock -w'
 alias pacman='pacman --color auto'
 alias sudo='sudo '
 alias nano='nano -c'
-alias rm-pycache='find /usr/lib/python3.*/. | grep -E "(/__pycache__$|\.pyc$|\.pyo$)" | sudo xargs rm -rf'
 
 # cd, ps ...
 alias ..='cd ..'
@@ -30,6 +29,8 @@ alias mongojs='/usr/bin/mongo'
 alias pau='yay -Syyu --devel --timeupdate'
 alias paS='yay -S'
 alias pas='yay -Ss'
+alias paG='yay -G'
+alias paU='yay -U'
 alias paR='yay -Rns'
 alias paI='yay -Sii'
 alias paQi='yay -Qi'                       # package informatons
@@ -40,11 +41,13 @@ alias paQg='yay -Qg'                       # view all installed members of a pac
 alias paQe='yay -Qet'                      # view explicitly installed packages
 alias paur='yay -Qm'                       # packages installed from AUR
 alias past='yay -Ps'                       # package statistics
-alias pacl='yes | yay -Scc && yay -Yc \
+alias pacl='sudo rm -rf /var/cache/pacman/pkg/* \
+            && yes | yay -Scc &&  yay -Yc \
             && sudo journalctl --vacuum-time=1d --quiet && sync \
             && sudo rm -f /var/log/journal/*/* \
             && sudo rm -f /var/lib/systemd/coredump/* \
             && sudo rm -rf /var/lib/dkms/nvidia/*/*-lts/x86_64/log/* \
+            && find /usr/lib/python3.*/. | grep -E "(/__pycache__$|\.pyc$|\.pyo$)" | sudo xargs rm -rf \
             && printf "\nRemoved all...\n\n"'
 
 #bundler
@@ -59,6 +62,7 @@ alias ubuntu='sudo modprobe vboxdrv && VBoxManage startvm "Ubuntu 2005.04"'
 alias fedora='sudo modprobe vboxdrv && VBoxManage startvm "Fedora 6 2006.10"'
 alias suse='sudo modprobe vboxdrv && VBoxManage startvm "SuSE 9.1 2004.04"'
 alias win='sudo modprobe vboxdrv && VBoxManage startvm "Windows"'
+alias arch-test='sudo modprobe vboxdrv && VBoxManage startvm "Arch-test" --type headless'
 alias arch-vba='sudo modprobe vboxdrv && VBoxManage startvm "Arch-vba" --type headless'
 
 # weather
@@ -71,5 +75,6 @@ alias weu='/home/kfl62/.conky/weather.sh update'
 alias m-router='sshfs root@kfl62-router.lan:/ /mnt/kfl62-router -p 22'
 alias m-trst='sshfs kfl62@trst.ro:/ /mnt/kfl62-trst -p 22'
 alias m-vba='sshfs kfl62@kfl62-vba.lan:/ /mnt/kfl62-vba -p 22'
+alias m-test='sshfs kfl62@kfl62-test.lan:/ /mnt/kfl62-test -p 22'
 alias u-all='fusermount -uq /mnt/kfl62-router; fusermount -uq /mnt/kfl62-trst;\
              fusermount -uq /mnt/kfl62-vba'
